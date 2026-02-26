@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>User Panel</h2>
+
+<h3>Create Parcel</h3>
+
+<input type="text" id="parcelName" placeholder="Parcel Name">
+
+<label>Source City:</label>
+<select id="sourceSelect"></select>
+
+<label>Destination City:</label>
+<select id="destSelect"></select>
+
+<input type="number" id="weight" placeholder="Weight (kg)">
+
+<select id="type">
+    <option value="normal">Normal</option>
+    <option value="express">Express</option>
+    <option value="fragile">Fragile</option>
+</select>
+
+<button onclick="calculateETA()">Check Arrival Time</button>
+<p id="etaResult"></p>
+
+<button onclick="createParcel()">Create Parcel</button>
+<p id="userResult"></p>
+
+<script src="script.js"></script>
+</body>
+</html>

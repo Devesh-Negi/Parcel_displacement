@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Login</title>
+</head>
+<body>
+
+<h2>Admin Login</h2>
+
+<input type="text" id="username" placeholder="Username">
+<br><br>
+<input type="password" id="password" placeholder="Password">
+<br><br>
+<button onclick="login()">Login</button>
+
+<p id="loginResult"></p>
+
+<script>
+function login() {
+
+    fetch("http://localhost:5000/admin-login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        if (data.message.includes("successful")) {
+
+            localStorage.setItem("isAdminLoggedIn", "true");
+
+            window.location.href = "admin.html";
+
+        } else {
+            document.getElementById("loginResult").innerText = data.message;
+        }
+
+    })
+    .catch(() => {
+        document.getElementById("loginResult").innerText = "Server error";
+    });
+}
+function logout() {
+    localStorage.removeItem("isAdminLoggedIn");
+    window.location.href = "admin-login.html";
+}
+</script>
+
+</body>
+</html>

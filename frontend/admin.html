@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    if (localStorage.getItem("isAdminLoggedIn") !== "true") {
+        window.location.href = "admin-login.html";
+    }
+</script>
+</head>
+<body>
+
+<h1>👨‍💼 Admin Panel</h1>
+
+<!-- Add City -->
+<h3>Add City</h3>
+<input type="text" id="cityName" placeholder="City Name">
+<button onclick="addCity()">Add City</button>
+
+<hr>
+
+<!-- Add Route -->
+<h3>Add Route</h3>
+<input type="number" id="routeSource" placeholder="Source ID">
+<input type="number" id="routeDestination" placeholder="Destination ID">
+<input type="number" id="routeDistance" placeholder="Distance (km)">
+<button onclick="addRoute()">Add Route</button>
+
+<hr>
+
+
+<!-- Set Traffic -->
+<h3>Set Traffic Level</h3>
+<select id="trafficLevel">
+    <option value="1">Low (100%)</option>
+    <option value="2">Medium (70%)</option>
+    <option value="3">High (40%)</option>
+</select>
+<button onclick="setTraffic()">Set Traffic</button>
+
+<hr>
+ 
+<!-- Auto Dispatch -->
+    <h3>Auto Dispatch</h3>
+    <button onclick="autoDispatch()">Auto Dispatch Highest Priority</button>
+    <p id="dispatchResult"></p>
+
+<!-- Dispatch Parcel -->
+<h3>Dispatch Parcel</h3>
+<input type="text" id="dispatchId" placeholder="Tracking Number">
+<button onclick="dispatchParcel()">Dispatch</button>
+
+<hr>
+<hr>
+
+<h3>📊 Analytics Dashboard</h3>
+<button onclick="loadAnalytics()">Load Analytics</button>
+
+<div id="analyticsBox"></div>
+
+<p id="adminResult" style="font-weight: bold; color: green;"></p>
+<button onclick="logout()">Logout</button>
+
+<script src="script.js"></script>
+
+</body>
+</html>
