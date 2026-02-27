@@ -17,14 +17,18 @@
 <h3>Add City</h3>
 <input type="text" id="cityName" placeholder="City Name">
 <button onclick="addCity()">Add City</button>
+<p id="adminResult" style="font-weight: bold; color: green;"></p>
 
 <hr>
 
 <!-- Add Route -->
 <h3>Add Route</h3>
-<input type="number" id="routeSource" placeholder="Source ID">
-<input type="number" id="routeDestination" placeholder="Destination ID">
-<input type="number" id="routeDistance" placeholder="Distance (km)">
+
+<select id="routeSourceSelect"></select>
+<select id="routeDestinationSelect"></select>
+
+<input type="number" id="routeDistance" placeholder="Distance (km)" />
+
 <button onclick="addRoute()">Add Route</button>
 
 <hr>
@@ -59,7 +63,7 @@
 
 <div id="analyticsBox"></div>
 
-<p id="adminResult" style="font-weight: bold; color: green;"></p>
+
 <button onclick="logout()">Logout</button>
 
 <script src="script.js"></script>

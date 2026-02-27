@@ -21,14 +21,19 @@ function addCity() {
 
 // Add Route
 function addRoute() {
-    const source_id = document.getElementById("routeSource").value;
-    const destination_id = document.getElementById("routeDestination").value;
+
+    const source_id = document.getElementById("routeSourceSelect").value;
+    const destination_id = document.getElementById("routeDestinationSelect").value;
     const distance = document.getElementById("routeDistance").value;
 
     fetch(`${BASE_URL}/add-route`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ source_id, destination_id, distance })
+        body: JSON.stringify({
+            source_id,
+            destination_id,
+            distance
+        })
     })
     .then(res => res.json())
     .then(data => {
@@ -218,3 +223,32 @@ function trackParcel() {
 window.onload = function () {
     loadCities();
 };
+
+
+function loadRouteCities() {
+
+    fetch(`${BASE_URL}/cities`)
+    .then(res => res.json())
+    .then(data => {
+
+        const source = document.getElementById("routeSourceSelect");
+        const dest = document.getElementById("routeDestinationSelect");
+
+        source.innerHTML = "";
+        dest.innerHTML = "";
+
+        data.forEach(city => {
+            source.innerHTML += `<option value="${city.id}">${city.name}</option>`;
+            dest.innerHTML += `<option value="${city.id}">${city.name}</option>`;
+        });
+
+    });
+}
+
+window.onload = function() {
+    loadRouteCities();
+};
+function logout() {
+    localStorage.removeItem("isAdminLoggedIn");
+    window.location.href = "admin-login.html";
+}

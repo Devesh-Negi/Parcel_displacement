@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class ="container">
 <h2>User Panel</h2>
 
 <h3>Create Parcel</h3>
@@ -31,7 +31,11 @@
 
 <button onclick="createParcel()">Create Parcel</button>
 <p id="userResult"></p>
+</div>
 
 <script src="script.js"></script>
+<script>
+   window.onload = function(){ loadCities();};
+</script>
 </body>
 </html>

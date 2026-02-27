@@ -1,33 +1,148 @@
+/* ===============================
+   RESET
+================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===============================
+   BODY
+================================ */
 body {
-    font-family: Arial;
-    text-align: center;
-    background-color: #f4f4f4;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1f4037, #99f2c8);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
+/* ===============================
+   HEADINGS
+================================ */
 h1 {
-    margin-top: 50px;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 30px;
 }
 
+h2, h3 {
+    margin: 20px 0 10px 0;
+}
+
+/* ===============================
+   MAIN CONTAINER
+================================ */
 .container {
-    margin-top: 50px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
+/* ===============================
+   BUTTONS
+================================ */
+button,
 .btn {
-    display: inline-block;
-    padding: 15px 30px;
-    margin: 20px;
-    background: #007bff;
-    color: white;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    margin: 8px 5px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s ease;
     text-decoration: none;
-    border-radius: 8px;
+    display: inline-block;
 }
 
+button:hover,
 .btn:hover {
-    background: #0056b3;
+    background-color: #0056b3;
 }
 
-input, select {
+/* Logout button special */
+button:last-of-type {
+    background-color: #dc3545;
+}
+
+button:last-of-type:hover {
+    background-color: #b02a37;
+}
+
+/* ===============================
+   INPUTS & SELECT
+================================ */
+/* INPUTS & SELECT FIXED */
+
+input,
+select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: 6px 5px;
+    width: auto;          /* IMPORTANT */
+    min-width: 180px;     /* keeps it stable */
+    background: #ffffff;
+    color: #000000;
+}
+
+/* REMOVE this if you have it */
+/* input, select { width: 100%; } */
+
+input:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* ===============================
+   RESULT BOXES
+================================ */
+#adminResult,
+#userResult,
+#dispatchResult,
+#etaResult,
+#analyticsBox {
+    margin-top: 15px;
     padding: 10px;
-    margin: 10px;
-    width: 200px;
+    background-color: #f1f9ff;
+    border-left: 4px solid #007bff;
+    border-radius: 5px;
+    white-space: pre-line;
+    max-width: 600px;   /* important */
+}
+
+/* ===============================
+   HR
+================================ */
+hr {
+    margin: 20px 0;
+    border: none;
+    height: 1px;
+    background-color: #ddd;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 768px) {
+    input,
+    select,
+    button {
+        width: auto;
+    }
+}
+select {
+    position: relative;
+    z-index: 1000;
+}
+.container {
+    overflow: visible !important;
 }
