@@ -1,169 +1,293 @@
-# 🚚 Parcel Delivery Management System
+# Parcel Delivery Management System
 
-A full-stack Parcel Delivery & Logistics Optimization System built using  
-**Node.js, Express, MySQL, HTML, CSS, and JavaScript**.
+A full-stack Parcel Delivery and Logistics Optimization System built using
+Node.js, Express.js, MySQL, HTML, CSS, and JavaScript.
 
-This project implements route optimization using **Dijkstra's Algorithm**,  
-priority-based parcel dispatching, traffic simulation, and real-time analytics.
+The project manages parcel booking, route optimization, delivery tracking,
+traffic-based ETA, priority dispatch, delivery charge calculation, and admin
+analytics.
 
----
+## Features
 
-## 📌 Features
+### Admin Panel
 
-### 🔐 Admin Panel
-- Secure Admin Login
-- Add Cities
-- Add Routes between cities
-- Set Traffic Level (Low / Medium / High)
-- Manual Dispatch
-- Auto Dispatch (Highest Priority Parcel)
-- View Analytics Dashboard
+- Secure admin login
+- Add cities
+- Add routes between cities
+- Add sample demo data
+- Remove duplicate routes
+- View cities, routes, and parcels in tables
+- Set traffic level: low, medium, or high
+- Manual parcel dispatch
+- Auto-dispatch highest priority parcel
+- Manually update parcel status
+- View analytics dashboard
+- View parcel status with colored badges
 
-### 👤 User Panel
-- View available cities (admin controlled)
-- Select Source & Destination from dropdown
-- View shortest route path
-- Calculate Estimated Arrival Time (ETA)
-- Create Parcel
-- Track Parcel by Tracking ID
+### User Panel
 
-### 🧠 Smart System Features
-- Dijkstra's Shortest Path Algorithm
-- Priority Score Calculation
-- Traffic-Based Delivery Time
-- Auto Delivery Status Update
-- Real-Time Analytics Dashboard
+- Select source and destination city
+- Check shortest route using Dijkstra's Algorithm
+- Calculate ETA based on current traffic speed
+- View delivery cost breakdown
+- Create parcel and generate tracking ID
+- Track parcel by tracking ID
+- View parcel progress timeline
+- View available routes
+- View route graph with cities and distances
 
----
+### Smart System Features
 
-## 🛠️ Tech Stack
+- Dijkstra's shortest path algorithm
+- Traffic-based delivery time
+- Priority score calculation
+- Priority-based auto dispatch
+- Delivery charge calculation
+- Parcel status timeline
+- Route graph visualization
+- Analytics dashboard
+- MySQL database schema file
+
+## Tech Stack
+
+### Frontend
+
+- HTML
+- CSS
+- JavaScript
+- Fetch API
 
 ### Backend
+
 - Node.js
 - Express.js
 - MySQL
-- Dijkstra Algorithm (Graph Theory)
+- Dijkstra Algorithm
 
-### Frontend
-- HTML
-- CSS
-- JavaScript (Fetch API)
+### Database
 
----
+- MySQL
+- Tables: `cities`, `routes`, `parcels`
 
-## 📂 Project Structure
+## Project Structure
 
+```text
 parcel-delivery/
-│
-├── backend/
-│   ├── server.js
-│   ├── db.js
-│   └── algorithms/
-│       └── dijkstra.js
-│
-├── frontend/
-│   ├── admin.html
-│   ├── admin-login.html
-│   ├── user.html
-│   ├── script.js
-│   └── style.css
-│
-└── README.md
+|-- backend/
+|   |-- algorithms/
+|   |   |-- dijkstra.js
+|   |-- db.js
+|   |-- schema.sql
+|   |-- server.js
+|   |-- package.json
+|
+|-- frontend/
+|   |-- admin-login.html
+|   |-- admin.html
+|   |-- index.html
+|   |-- script.js
+|   |-- style.css
+|   |-- user.html
+|
+|-- README.md
+```
 
----
+## Installation and Setup
 
-## ⚙️ Installation & Setup
+### 1. Clone Repository
 
-### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/Devesh-Negi/Parcel_displacement.git
+cd Parcel_displacement
+```
 
-git clone https://github.com/yourusername/parcel-delivery.git  
-cd parcel-delivery
+### 2. Install Backend Dependencies
 
-### 2️⃣ Install Backend Dependencies
-
-cd backend  
+```bash
+cd backend
 npm install
+```
 
-### 3️⃣ Configure MySQL Database
+### 3. Configure MySQL Database
 
-Create a database:
+Open MySQL and run:
 
-CREATE DATABASE parcel_db;  
-USE parcel_db;
+```sql
+SOURCE backend/schema.sql;
+```
 
-Create required tables:
-- cities
-- routes
-- parcels
+Or manually open `backend/schema.sql` and execute the SQL commands.
 
-### 4️⃣ Start Backend Server
+The database name used by the project is:
 
+```text
+parcel_delivery
+```
+
+### 4. Check Database Connection
+
+Update MySQL credentials in:
+
+```text
+backend/db.js
+```
+
+Default values currently used:
+
+```js
+host: "localhost"
+user: "root"
+password: "root"
+database: "parcel_delivery"
+```
+
+### 5. Start Backend Server
+
+```bash
+cd backend
 node server.js
+```
 
-Server runs on:
+Server runs at:
 
+```text
 http://localhost:5000
+```
 
-### 5️⃣ Run Frontend
+### 6. Run Frontend
 
-Open frontend folder using Live Server  
-or open:
+Open the frontend using Live Server, or directly open:
 
-admin-login.html  
-user.html
+```text
+frontend/index.html
+```
 
----
+## Admin Login
 
-## 🔑 Admin Login Credentials
-
-Username: admin  
+```text
+Username: admin
 Password: 12345
+```
 
----
+## Important API Endpoints
 
-## 📊 API Endpoints
+### Admin Login
 
-### City
-POST /add-city  
-GET /cities  
+```text
+POST /admin-login
+```
 
-### Route
-POST /add-route  
-GET /routes  
+### Cities
 
-### Parcel
-POST /add-parcel  
-GET /parcels  
-GET /track-parcel/:trackingNumber  
+```text
+POST /add-city
+GET  /cities
+```
+
+### Routes
+
+```text
+POST /add-route
+GET  /routes
+POST /seed-demo
+POST /cleanup-routes
+```
+
+### Parcels
+
+```text
+POST /add-parcel
+GET  /parcels
+GET  /track-parcel/:trackingNumber
+POST /update-status/:trackingNumber
+```
 
 ### Dispatch
-POST /dispatch/:trackingNumber  
-POST /auto-dispatch  
+
+```text
+POST /dispatch/:trackingNumber
+POST /auto-dispatch
+```
 
 ### Analytics
-GET /analytics  
 
----
+```text
+GET /analytics
+GET /update-deliveries
+```
 
-## 🧮 Algorithm Used
+## Algorithm Used
 
-The system uses **Dijkstra's Algorithm** to:
+The system uses Dijkstra's Algorithm to find the shortest route between two
+cities.
+
+It is used to:
 
 - Calculate shortest distance
-- Determine optimal delivery route
-- Compute delivery time
+- Find optimal delivery path
+- Estimate delivery time
+- Support parcel charge calculation
 
-Time Complexity: O(V²)
+Time complexity:
 
----
+```text
+O(V^2)
+```
 
-## 👨‍💻 Author
+Where:
 
-Developed by: Devesh Singh Negi  
-MCA Project
+- `V` is the number of cities
+- Routes are used as graph edges
 
----
+## Delivery Charge Calculation
 
-## ⭐ If you like this project
+The system calculates delivery charge using:
 
-Give it a ⭐ on GitHub!
+- Base charge
+- Distance charge
+- Weight charge
+- Parcel type charge
+
+Parcel types:
+
+- Normal
+- Express
+- Fragile
+
+## Demo Flow
+
+Use this flow during project presentation:
+
+1. Open `frontend/index.html`
+2. Go to Admin Panel
+3. Login using admin credentials
+4. Click `Add Sample Data`
+5. Click `Show Routes`
+6. Go to User Panel
+7. Select source and destination city
+8. Click `Check ETA and Charge`
+9. Click `Show Route Graph`
+10. Create a parcel
+11. Copy the tracking ID
+12. Track the parcel
+13. Return to Admin Panel
+14. Update parcel status or dispatch parcel
+15. Show analytics dashboard
+
+## Key Project Highlights
+
+- Full-stack web application
+- MySQL database integration
+- Real route optimization using graph algorithm
+- Traffic-based ETA
+- Priority-based dispatch system
+- User-friendly tracking timeline
+- Admin dashboard and analytics
+- Route graph visualization
+- Delivery cost breakdown
+
+## Author
+
+Developed by: Devesh Singh Negi
+
+MCA Final Year Project
