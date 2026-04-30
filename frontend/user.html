@@ -5,37 +5,68 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class ="container">
-<h2>User Panel</h2>
 
-<h3>Create Parcel</h3>
+<div class="page-shell">
+    <header class="topbar">
+        <div>
+            <p class="eyebrow">Customer Portal</p>
+            <h1>Create and Track Parcel</h1>
+        </div>
+        <a href="index.html" class="btn btn-secondary">Home</a>
+    </header>
 
-<input type="text" id="parcelName" placeholder="Parcel Name">
+    <main class="dashboard-grid">
+        <section class="panel wide">
+            <h3>Create Parcel</h3>
+            <div class="form-grid">
+                <input type="text" id="parcelName" placeholder="Parcel Name">
 
-<label>Source City:</label>
-<select id="sourceSelect"></select>
+                <label>
+                    Source City
+                    <select id="sourceSelect"></select>
+                </label>
 
-<label>Destination City:</label>
-<select id="destSelect"></select>
+                <label>
+                    Destination City
+                    <select id="destSelect"></select>
+                </label>
 
-<input type="number" id="weight" placeholder="Weight (kg)">
+                <input type="number" id="weight" placeholder="Weight (kg)">
 
-<select id="type">
-    <option value="normal">Normal</option>
-    <option value="express">Express</option>
-    <option value="fragile">Fragile</option>
-</select>
+                <select id="type">
+                    <option value="normal">Normal Parcel</option>
+                    <option value="express">Express Parcel</option>
+                    <option value="fragile">Fragile Parcel</option>
+                </select>
+            </div>
+            <div class="button-group">
+                <button onclick="calculateETA()">Check ETA and Charge</button>
+                <button onclick="createParcel()">Create Parcel</button>
+            </div>
+            <p id="etaResult"></p>
+            <p id="userResult"></p>
+        </section>
 
-<button onclick="calculateETA()">Check Arrival Time</button>
-<p id="etaResult"></p>
+        <section class="panel">
+            <h3>Track Parcel</h3>
+            <div class="form-row">
+                <input type="text" id="trackId" placeholder="Tracking Number">
+                <button onclick="trackParcel()">Track</button>
+            </div>
+        </section>
 
-<button onclick="createParcel()">Create Parcel</button>
-<p id="userResult"></p>
+        <section class="panel wide">
+            <h3>Available Routes</h3>
+            <div class="button-group">
+                <button onclick="loadUserRoutes()">Show Available Routes</button>
+                <button onclick="loadRouteGraph()">Show Route Graph</button>
+            </div>
+            <div id="routeListBox"></div>
+            <div id="routeGraphBox"></div>
+        </section>
+    </main>
 </div>
 
 <script src="script.js"></script>
-<script>
-   window.onload = function(){ loadCities();};
-</script>
 </body>
 </html>
